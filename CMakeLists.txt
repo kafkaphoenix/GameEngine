@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(GameEngine VERSION 1.0.0 LANGUAGES CXX)
+project(GameEngine VERSION 1.1.0 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(BUILD_SHARED_LIBS "Build engine as a shared library" OFF)
@@ -9,20 +9,18 @@ option(BUILD_SHARED_LIBS "Build engine as a shared library" OFF)
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 if(BUILD_SHARED_LIBS)
-    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON) # required when using MSVC
-    add_library(${PROJECT_NAME} SHARED ${SOURCES})
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON) # required when using MSVC
+add_library(${PROJECT_NAME} SHARED ${SOURCES})
 else()
-    add_library(${PROJECT_NAME} STATIC ${SOURCES})
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
 endif()
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR/${PROJECT_NAME}}>
+$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR/${PROJECT_NAME}}>
 )
 
-find_package(glm CONFIG REQUIRED)
-
-target_link_libraries(${PROJECT_NAME} PUBLIC glm::glm)
+add_subdirectory(third_party)
 
 include(GNUInstallDirs)
 install(TARGETS ${PROJECT_NAME}
