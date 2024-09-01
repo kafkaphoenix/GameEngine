@@ -22,6 +22,7 @@ $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR/${PROJECT_NAME}}>
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 add_subdirectory(third_party)
+target_precompile_headers(${PROJECT_NAME} PRIVATE src/gameengine/pch.h)
 
 include(GNUInstallDirs)
 install(TARGETS ${PROJECT_NAME}
