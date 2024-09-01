@@ -12,7 +12,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${Stb_INCLUDE_DIR})
 target_compile_definitions(${PROJECT_NAME} PRIVATE "STBI_FAILURE_USERMSG")
 find_package(spdlog CONFIG REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
+target_link_libraries(${PROJECT_NAME} PRIVATE
     glad::glad
     glfw
     glm::glm-header-only
