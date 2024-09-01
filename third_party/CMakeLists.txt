@@ -12,12 +12,14 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${Stb_INCLUDE_DIR})
 target_compile_definitions(${PROJECT_NAME} PRIVATE "STBI_FAILURE_USERMSG")
 find_package(spdlog CONFIG REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
-    glad::glad
-    glfw
+target_link_libraries(${PROJECT_NAME} 
+    PUBLIC
     glm::glm-header-only
     imgui::imgui
     EnTT::EnTT
+    PRIVATE
+    glad::glad
+    glfw
     nlohmann_json::nlohmann_json
     assimp::assimp
     spdlog::spdlog_header_only

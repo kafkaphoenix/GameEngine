@@ -1,5 +1,5 @@
 #include "core.h"
-#include <iostream>
+#include "../pch.h"
 
 namespace engine::core {
     void Core::start() {
