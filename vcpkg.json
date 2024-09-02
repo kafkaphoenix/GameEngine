@@ -30,6 +30,7 @@
         "wchar"
       ]
     },
-    "stb"
+    "stb",
+    "catch2"
   ]
 }
